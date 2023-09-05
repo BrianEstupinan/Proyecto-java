@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSalidaProductoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateSalidaProductoLabel_idSalidaProducto}" for="idSalidaProducto" />
+                    <h:inputText id="idSalidaProducto" value="#{salidaProductoController.selected.idSalidaProducto}" title="#{bundle.CreateSalidaProductoTitle_idSalidaProducto}" required="true" requiredMessage="#{bundle.CreateSalidaProductoRequiredMessage_idSalidaProducto}"/>
+                    <h:outputLabel value="#{bundle.CreateSalidaProductoLabel_nombreProducto}" for="nombreProducto" />
+                    <h:inputText id="nombreProducto" value="#{salidaProductoController.selected.nombreProducto}" title="#{bundle.CreateSalidaProductoTitle_nombreProducto}" />
+                    <h:outputLabel value="#{bundle.CreateSalidaProductoLabel_fechaSalida}" for="fechaSalida" />
+                    <h:inputText id="fechaSalida" value="#{salidaProductoController.selected.fechaSalida}" title="#{bundle.CreateSalidaProductoTitle_fechaSalida}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateSalidaProductoLabel_idInventario}" for="idInventario" />
+                    <h:selectOneMenu id="idInventario" value="#{salidaProductoController.selected.idInventario}" title="#{bundle.CreateSalidaProductoTitle_idInventario}" >
+                        <f:selectItems value="#{inventarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{salidaProductoController.create}" value="#{bundle.CreateSalidaProductoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{salidaProductoController.prepareList}" value="#{bundle.CreateSalidaProductoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateSalidaProductoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

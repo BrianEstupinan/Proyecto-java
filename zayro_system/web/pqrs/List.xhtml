@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPqrsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListPqrsEmpty}" rendered="#{pqrsController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{pqrsController.items.rowCount > 0}">
+                    <h:outputText value="#{pqrsController.pagination.pageFirstItem + 1}..#{pqrsController.pagination.pageLastItem + 1}/#{pqrsController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{pqrsController.previous}" value="#{bundle.Previous} #{pqrsController.pagination.pageSize}" rendered="#{pqrsController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{pqrsController.next}" value="#{bundle.Next} #{pqrsController.pagination.pageSize}" rendered="#{pqrsController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{pqrsController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPqrsTitle_idPqrs}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPqrs}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPqrsTitle_tipoPqrs}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoPqrs}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPqrsTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPqrsTitle_imagen}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.imagen}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPqrsTitle_idUsuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idUsuario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{pqrsController.prepareView}" value="#{bundle.ListPqrsViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{pqrsController.prepareEdit}" value="#{bundle.ListPqrsEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{pqrsController.destroy}" value="#{bundle.ListPqrsDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{pqrsController.prepareCreate}" value="#{bundle.ListPqrsCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListPqrsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

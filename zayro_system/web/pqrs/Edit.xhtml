@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPqrsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPqrsLabel_idPqrs}" for="idPqrs" />
+                    <h:inputText id="idPqrs" value="#{pqrsController.selected.idPqrs}" title="#{bundle.EditPqrsTitle_idPqrs}" required="true" requiredMessage="#{bundle.EditPqrsRequiredMessage_idPqrs}"/>
+                    <h:outputLabel value="#{bundle.EditPqrsLabel_tipoPqrs}" for="tipoPqrs" />
+                    <h:inputText id="tipoPqrs" value="#{pqrsController.selected.tipoPqrs}" title="#{bundle.EditPqrsTitle_tipoPqrs}" />
+                    <h:outputLabel value="#{bundle.EditPqrsLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{pqrsController.selected.descripcion}" title="#{bundle.EditPqrsTitle_descripcion}" />
+                    <h:outputLabel value="#{bundle.EditPqrsLabel_imagen}" for="imagen" />
+                    <h:inputTextarea rows="4" cols="30" id="imagen" value="#{pqrsController.selected.imagen}" title="#{bundle.EditPqrsTitle_imagen}" />
+                    <h:outputLabel value="#{bundle.EditPqrsLabel_idUsuario}" for="idUsuario" />
+                    <h:selectOneMenu id="idUsuario" value="#{pqrsController.selected.idUsuario}" title="#{bundle.EditPqrsTitle_idUsuario}" >
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{pqrsController.update}" value="#{bundle.EditPqrsSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPqrsViewLink}"/>
+                <br />
+                <h:commandLink action="#{pqrsController.prepareList}" value="#{bundle.EditPqrsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPqrsIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

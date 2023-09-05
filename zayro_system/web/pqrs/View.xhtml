@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPqrsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPqrsLabel_idPqrs}"/>
+                    <h:outputText value="#{pqrsController.selected.idPqrs}" title="#{bundle.ViewPqrsTitle_idPqrs}"/>
+                    <h:outputText value="#{bundle.ViewPqrsLabel_tipoPqrs}"/>
+                    <h:outputText value="#{pqrsController.selected.tipoPqrs}" title="#{bundle.ViewPqrsTitle_tipoPqrs}"/>
+                    <h:outputText value="#{bundle.ViewPqrsLabel_descripcion}"/>
+                    <h:outputText value="#{pqrsController.selected.descripcion}" title="#{bundle.ViewPqrsTitle_descripcion}"/>
+                    <h:outputText value="#{bundle.ViewPqrsLabel_imagen}"/>
+                    <h:outputText value="#{pqrsController.selected.imagen}" title="#{bundle.ViewPqrsTitle_imagen}"/>
+                    <h:outputText value="#{bundle.ViewPqrsLabel_idUsuario}"/>
+                    <h:outputText value="#{pqrsController.selected.idUsuario}" title="#{bundle.ViewPqrsTitle_idUsuario}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{pqrsController.destroyAndView}" value="#{bundle.ViewPqrsDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPqrsEditLink}"/>
+                <br />
+                <h:commandLink action="#{pqrsController.prepareCreate}" value="#{bundle.ViewPqrsCreateLink}" />
+                <br />
+                <h:commandLink action="#{pqrsController.prepareList}" value="#{bundle.ViewPqrsShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPqrsIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

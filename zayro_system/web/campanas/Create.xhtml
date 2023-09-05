@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCampanasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCampanasLabel_idCampaña}" for="idCampaña" />
+                    <h:inputText id="idCampaña" value="#{campanasController.selected.idCampaña}" title="#{bundle.CreateCampanasTitle_idCampaña}" required="true" requiredMessage="#{bundle.CreateCampanasRequiredMessage_idCampaña}"/>
+                    <h:outputLabel value="#{bundle.CreateCampanasLabel_nombreCampaña}" for="nombreCampaña" />
+                    <h:inputText id="nombreCampaña" value="#{campanasController.selected.nombreCampaña}" title="#{bundle.CreateCampanasTitle_nombreCampaña}" />
+                    <h:outputLabel value="#{bundle.CreateCampanasLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{campanasController.selected.descripcion}" title="#{bundle.CreateCampanasTitle_descripcion}" />
+                    <h:outputLabel value="#{bundle.CreateCampanasLabel_emailClientes}" for="emailClientes" />
+                    <h:inputText id="emailClientes" value="#{campanasController.selected.emailClientes}" title="#{bundle.CreateCampanasTitle_emailClientes}" />
+                    <h:outputLabel value="#{bundle.CreateCampanasLabel_fechaInicio}" for="fechaInicio" />
+                    <h:inputText id="fechaInicio" value="#{campanasController.selected.fechaInicio}" title="#{bundle.CreateCampanasTitle_fechaInicio}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateCampanasLabel_fechaFin}" for="fechaFin" />
+                    <h:inputText id="fechaFin" value="#{campanasController.selected.fechaFin}" title="#{bundle.CreateCampanasTitle_fechaFin}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateCampanasLabel_idUsuario}" for="idUsuario" />
+                    <h:selectOneMenu id="idUsuario" value="#{campanasController.selected.idUsuario}" title="#{bundle.CreateCampanasTitle_idUsuario}" >
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{campanasController.create}" value="#{bundle.CreateCampanasSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{campanasController.prepareList}" value="#{bundle.CreateCampanasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateCampanasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

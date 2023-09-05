@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateReciboVentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateReciboVentaLabel_idReciboVenta}" for="idReciboVenta" />
+                    <h:inputText id="idReciboVenta" value="#{reciboVentaController.selected.idReciboVenta}" title="#{bundle.CreateReciboVentaTitle_idReciboVenta}" required="true" requiredMessage="#{bundle.CreateReciboVentaRequiredMessage_idReciboVenta}"/>
+                    <h:outputLabel value="#{bundle.CreateReciboVentaLabel_cantidad}" for="cantidad" />
+                    <h:inputText id="cantidad" value="#{reciboVentaController.selected.cantidad}" title="#{bundle.CreateReciboVentaTitle_cantidad}" />
+                    <h:outputLabel value="#{bundle.CreateReciboVentaLabel_metodoPago}" for="metodoPago" />
+                    <h:inputText id="metodoPago" value="#{reciboVentaController.selected.metodoPago}" title="#{bundle.CreateReciboVentaTitle_metodoPago}" />
+                    <h:outputLabel value="#{bundle.CreateReciboVentaLabel_precioUnidad}" for="precioUnidad" />
+                    <h:inputText id="precioUnidad" value="#{reciboVentaController.selected.precioUnidad}" title="#{bundle.CreateReciboVentaTitle_precioUnidad}" />
+                    <h:outputLabel value="#{bundle.CreateReciboVentaLabel_precioTotal}" for="precioTotal" />
+                    <h:inputText id="precioTotal" value="#{reciboVentaController.selected.precioTotal}" title="#{bundle.CreateReciboVentaTitle_precioTotal}" />
+                    <h:outputLabel value="#{bundle.CreateReciboVentaLabel_fecha}" for="fecha" />
+                    <h:inputText id="fecha" value="#{reciboVentaController.selected.fecha}" title="#{bundle.CreateReciboVentaTitle_fecha}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateReciboVentaLabel_idOrden}" for="idOrden" />
+                    <h:selectOneMenu id="idOrden" value="#{reciboVentaController.selected.idOrden}" title="#{bundle.CreateReciboVentaTitle_idOrden}" >
+                        <f:selectItems value="#{ordenController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateReciboVentaLabel_idUsuario}" for="idUsuario" />
+                    <h:selectOneMenu id="idUsuario" value="#{reciboVentaController.selected.idUsuario}" title="#{bundle.CreateReciboVentaTitle_idUsuario}" >
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{reciboVentaController.create}" value="#{bundle.CreateReciboVentaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{reciboVentaController.prepareList}" value="#{bundle.CreateReciboVentaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateReciboVentaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

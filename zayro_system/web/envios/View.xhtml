@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//ES" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.VerEnviosTitulo}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="panelMensajes" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.VerEnviosEtiquetaIdEnvio}"/>
+                    <h:outputText value="#{enviosController.selected.idEnvio}" title="#{bundle.VerEnviosTituloIdEnvio}"/>
+                    <h:outputText value="#{bundle.VerEnviosEtiquetaNumeroRadicadoEnvio}"/>
+                    <h:outputText value="#{enviosController.selected.numeroRadicadoEnvio}" title="#{bundle.VerEnviosTituloNumeroRadicadoEnvio}"/>
+                    <h:outputText value="#{bundle.VerEnviosEtiquetaIdTransportadora}"/>
+                    <h:outputText value="#{enviosController.selected.idTransportadora}" title="#{bundle.VerEnviosTituloIdTransportadora}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{enviosController.eliminarYVer}" value="#{bundle.VerEnviosEnlaceEliminar}"/>
+                <br />
+                <br />
+                <h:link outcome="Editar" value="#{bundle.VerEnviosEnlaceEditar}"/>
+                <br />
+                <h:commandLink action="#{enviosController.prepararCrear}" value="#{bundle.VerEnviosEnlaceCrear}" />
+                <br />
+                <h:commandLink action="#{enviosController.prepararListar}" value="#{bundle.VerEnviosEnlaceMostrarTodos}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.VerEnviosEnlaceInicio}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

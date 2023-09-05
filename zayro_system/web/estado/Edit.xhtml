@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEstadoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditEstadoLabel_idEstado}" for="idEstado" />
+                    <h:inputText id="idEstado" value="#{estadoController.selected.idEstado}" title="#{bundle.EditEstadoTitle_idEstado}" required="true" requiredMessage="#{bundle.EditEstadoRequiredMessage_idEstado}"/>
+                    <h:outputLabel value="#{bundle.EditEstadoLabel_descripcionEstado}" for="descripcionEstado" />
+                    <h:inputText id="descripcionEstado" value="#{estadoController.selected.descripcionEstado}" title="#{bundle.EditEstadoTitle_descripcionEstado}" />
+                    <h:outputLabel value="#{bundle.EditEstadoLabel_fechaEnvio}" for="fechaEnvio" />
+                    <h:inputText id="fechaEnvio" value="#{estadoController.selected.fechaEnvio}" title="#{bundle.EditEstadoTitle_fechaEnvio}" required="true" requiredMessage="#{bundle.EditEstadoRequiredMessage_fechaEnvio}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditEstadoLabel_idEnvio}" for="idEnvio" />
+                    <h:selectOneMenu id="idEnvio" value="#{estadoController.selected.idEnvio}" title="#{bundle.EditEstadoTitle_idEnvio}" >
+                        <f:selectItems value="#{enviosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{estadoController.update}" value="#{bundle.EditEstadoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditEstadoViewLink}"/>
+                <br />
+                <h:commandLink action="#{estadoController.prepareList}" value="#{bundle.EditEstadoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditEstadoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCampanasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCampanasLabel_idCampaña}"/>
+                    <h:outputText value="#{campanasController.selected.idCampaña}" title="#{bundle.ViewCampanasTitle_idCampaña}"/>
+                    <h:outputText value="#{bundle.ViewCampanasLabel_nombreCampaña}"/>
+                    <h:outputText value="#{campanasController.selected.nombreCampaña}" title="#{bundle.ViewCampanasTitle_nombreCampaña}"/>
+                    <h:outputText value="#{bundle.ViewCampanasLabel_descripcion}"/>
+                    <h:outputText value="#{campanasController.selected.descripcion}" title="#{bundle.ViewCampanasTitle_descripcion}"/>
+                    <h:outputText value="#{bundle.ViewCampanasLabel_emailClientes}"/>
+                    <h:outputText value="#{campanasController.selected.emailClientes}" title="#{bundle.ViewCampanasTitle_emailClientes}"/>
+                    <h:outputText value="#{bundle.ViewCampanasLabel_fechaInicio}"/>
+                    <h:outputText value="#{campanasController.selected.fechaInicio}" title="#{bundle.ViewCampanasTitle_fechaInicio}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewCampanasLabel_fechaFin}"/>
+                    <h:outputText value="#{campanasController.selected.fechaFin}" title="#{bundle.ViewCampanasTitle_fechaFin}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewCampanasLabel_idUsuario}"/>
+                    <h:outputText value="#{campanasController.selected.idUsuario}" title="#{bundle.ViewCampanasTitle_idUsuario}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{campanasController.destroyAndView}" value="#{bundle.ViewCampanasDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewCampanasEditLink}"/>
+                <br />
+                <h:commandLink action="#{campanasController.prepareCreate}" value="#{bundle.ViewCampanasCreateLink}" />
+                <br />
+                <h:commandLink action="#{campanasController.prepareList}" value="#{bundle.ViewCampanasShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewCampanasIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

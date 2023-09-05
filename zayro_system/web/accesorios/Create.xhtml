@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAccesoriosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAccesoriosLabel_idAccesorio}" for="idAccesorio" />
+                    <h:inputText id="idAccesorio" value="#{accesoriosController.selected.idAccesorio}" title="#{bundle.CreateAccesoriosTitle_idAccesorio}" required="true" requiredMessage="#{bundle.CreateAccesoriosRequiredMessage_idAccesorio}"/>
+                    <h:outputLabel value="#{bundle.CreateAccesoriosLabel_accesorios}" for="accesorios" />
+                    <h:inputText id="accesorios" value="#{accesoriosController.selected.accesorios}" title="#{bundle.CreateAccesoriosTitle_accesorios}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{accesoriosController.create}" value="#{bundle.CreateAccesoriosSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{accesoriosController.prepareList}" value="#{bundle.CreateAccesoriosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAccesoriosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateEnviosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateEnviosLabel_idEnvio}" for="idEnvio" />
+                    <h:inputText id="idEnvio" value="#{enviosController.selected.idEnvio}" title="#{bundle.CreateEnviosTitle_idEnvio}" required="true" requiredMessage="#{bundle.CreateEnviosRequiredMessage_idEnvio}"/>
+                    <h:outputLabel value="#{bundle.CreateEnviosLabel_numeroRadicadoEnvio}" for="numeroRadicadoEnvio" />
+                    <h:inputText id="numeroRadicadoEnvio" value="#{enviosController.selected.numeroRadicadoEnvio}" title="#{bundle.CreateEnviosTitle_numeroRadicadoEnvio}" />
+                    <h:outputLabel value="#{bundle.CreateEnviosLabel_idTransportadora}" for="idTransportadora" />
+                    <h:selectOneMenu id="idTransportadora" value="#{enviosController.selected.idTransportadora}" title="#{bundle.CreateEnviosTitle_idTransportadora}" >
+                        <f:selectItems value="#{transportadoraController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{enviosController.create}" value="#{bundle.CreateEnviosSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{enviosController.prepareList}" value="#{bundle.CreateEnviosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateEnviosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateOrdenTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateOrdenLabel_idOrden}" for="idOrden" />
+                    <h:inputText id="idOrden" value="#{ordenController.selected.idOrden}" title="#{bundle.CreateOrdenTitle_idOrden}" required="true" requiredMessage="#{bundle.CreateOrdenRequiredMessage_idOrden}"/>
+                    <h:outputLabel value="#{bundle.CreateOrdenLabel_cantidad}" for="cantidad" />
+                    <h:inputText id="cantidad" value="#{ordenController.selected.cantidad}" title="#{bundle.CreateOrdenTitle_cantidad}" />
+                    <h:outputLabel value="#{bundle.CreateOrdenLabel_metodoPago}" for="metodoPago" />
+                    <h:inputText id="metodoPago" value="#{ordenController.selected.metodoPago}" title="#{bundle.CreateOrdenTitle_metodoPago}" />
+                    <h:outputLabel value="#{bundle.CreateOrdenLabel_precio}" for="precio" />
+                    <h:inputText id="precio" value="#{ordenController.selected.precio}" title="#{bundle.CreateOrdenTitle_precio}" />
+                    <h:outputLabel value="#{bundle.CreateOrdenLabel_precioTotal}" for="precioTotal" />
+                    <h:inputText id="precioTotal" value="#{ordenController.selected.precioTotal}" title="#{bundle.CreateOrdenTitle_precioTotal}" />
+                    <h:outputLabel value="#{bundle.CreateOrdenLabel_idEnvio}" for="idEnvio" />
+                    <h:selectOneMenu id="idEnvio" value="#{ordenController.selected.idEnvio}" title="#{bundle.CreateOrdenTitle_idEnvio}" >
+                        <f:selectItems value="#{enviosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateOrdenLabel_idUsuario}" for="idUsuario" />
+                    <h:selectOneMenu id="idUsuario" value="#{ordenController.selected.idUsuario}" title="#{bundle.CreateOrdenTitle_idUsuario}" >
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateOrdenLabel_idInventario}" for="idInventario" />
+                    <h:selectOneMenu id="idInventario" value="#{ordenController.selected.idInventario}" title="#{bundle.CreateOrdenTitle_idInventario}" >
+                        <f:selectItems value="#{inventarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateOrdenLabel_idTalla}" for="idTalla" />
+                    <h:selectOneMenu id="idTalla" value="#{ordenController.selected.idTalla}" title="#{bundle.CreateOrdenTitle_idTalla}" >
+                        <f:selectItems value="#{tallaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateOrdenLabel_idEstadoComprobante}" for="idEstadoComprobante" />
+                    <h:selectOneMenu id="idEstadoComprobante" value="#{ordenController.selected.idEstadoComprobante}" title="#{bundle.CreateOrdenTitle_idEstadoComprobante}" >
+                        <f:selectItems value="#{estadoComprobanteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ordenController.create}" value="#{bundle.CreateOrdenSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{ordenController.prepareList}" value="#{bundle.CreateOrdenShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateOrdenIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

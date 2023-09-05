@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListEntradaProductoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListEntradaProductoEmpty}" rendered="#{entradaProductoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{entradaProductoController.items.rowCount > 0}">
+                    <h:outputText value="#{entradaProductoController.pagination.pageFirstItem + 1}..#{entradaProductoController.pagination.pageLastItem + 1}/#{entradaProductoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{entradaProductoController.previous}" value="#{bundle.Previous} #{entradaProductoController.pagination.pageSize}" rendered="#{entradaProductoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{entradaProductoController.next}" value="#{bundle.Next} #{entradaProductoController.pagination.pageSize}" rendered="#{entradaProductoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{entradaProductoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEntradaProductoTitle_idEntradaProducto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idEntradaProducto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEntradaProductoTitle_nombreProducto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreProducto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEntradaProductoTitle_fechaEntrada}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaEntrada}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEntradaProductoTitle_idInventario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idInventario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{entradaProductoController.prepareView}" value="#{bundle.ListEntradaProductoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{entradaProductoController.prepareEdit}" value="#{bundle.ListEntradaProductoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{entradaProductoController.destroy}" value="#{bundle.ListEntradaProductoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{entradaProductoController.prepareCreate}" value="#{bundle.ListEntradaProductoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListEntradaProductoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
